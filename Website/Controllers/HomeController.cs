@@ -23,6 +23,12 @@ namespace Website.Controllers
             return View();
         }
 
+        public IActionResult Mahdi()
+        {
+            return View();
+        }
+
+
         public IActionResult Privacy()
         {
             return View();
