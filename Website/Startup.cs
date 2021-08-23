@@ -41,7 +41,7 @@ namespace Website
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            // app setrtings
             app.UseRouting();
 
             app.UseAuthorization();
