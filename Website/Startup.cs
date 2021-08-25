@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Website.Data;
 
 namespace Website
 {
@@ -24,6 +26,8 @@ namespace Website
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<WebsiteDatabaseContext>(options => { options.UseSqlServer("Data Source=192.168.168.253;Initial Catalog=MahdiDB;User Id=sa; Password=Toptec@2018@97;"); });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
