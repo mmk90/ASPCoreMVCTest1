@@ -16,9 +16,10 @@ namespace Website.Models
 
         public void addItem(CartItem cartItem)
         {
-            if(CartItems.Exists(c=>c.Item.ID==cartItem.ID))
+            if (CartItems.Exists(i => i.Item.ID == cartItem.Item.ID))
             {
-                CartItems.Find(c => c.Item.ID == cartItem.ID).Qty += 1;
+                CartItems.Find(i => i.Item.ID == cartItem.Item.ID)
+                    .Qty += 1;
             }
             else
             {
