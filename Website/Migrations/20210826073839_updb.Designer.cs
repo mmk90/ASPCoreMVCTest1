@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Website.Data;
 
 namespace Website.Migrations
 {
     [DbContext(typeof(WebsiteDatabaseContext))]
-    partial class WebsiteDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210826073839_updb")]
+    partial class updb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,68 +71,6 @@ namespace Website.Migrations
                     b.HasIndex("ProductID");
 
                     b.ToTable("CategorytoProducts");
-
-                    b.HasData(
-                        new
-                        {
-                            CategoryID = 1,
-                            ProductID = 1
-                        },
-                        new
-                        {
-                            CategoryID = 2,
-                            ProductID = 1
-                        },
-                        new
-                        {
-                            CategoryID = 3,
-                            ProductID = 1
-                        },
-                        new
-                        {
-                            CategoryID = 4,
-                            ProductID = 1
-                        },
-                        new
-                        {
-                            CategoryID = 1,
-                            ProductID = 2
-                        },
-                        new
-                        {
-                            CategoryID = 2,
-                            ProductID = 2
-                        },
-                        new
-                        {
-                            CategoryID = 3,
-                            ProductID = 2
-                        },
-                        new
-                        {
-                            CategoryID = 4,
-                            ProductID = 2
-                        },
-                        new
-                        {
-                            CategoryID = 1,
-                            ProductID = 3
-                        },
-                        new
-                        {
-                            CategoryID = 2,
-                            ProductID = 3
-                        },
-                        new
-                        {
-                            CategoryID = 3,
-                            ProductID = 3
-                        },
-                        new
-                        {
-                            CategoryID = 4,
-                            ProductID = 3
-                        });
                 });
 
             modelBuilder.Entity("Website.Models.Item", b =>
@@ -147,26 +87,6 @@ namespace Website.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Items");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Price = 854.0m,
-                            Qty = 5
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Price = 3302.0m,
-                            Qty = 8
-                        },
-                        new
-                        {
-                            ID = 3,
-                            Price = 2500m,
-                            Qty = 3
-                        });
                 });
 
             modelBuilder.Entity("Website.Models.Product", b =>
@@ -188,29 +108,6 @@ namespace Website.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Description = "this is the first Product",
-                            ItemID = 1,
-                            Name = "Product 1"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Description = "this is the second Product",
-                            ItemID = 2,
-                            Name = "Product 2"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            Description = "this is the third Product",
-                            ItemID = 3,
-                            Name = "Product 3"
-                        });
                 });
 
             modelBuilder.Entity("Website.Models.CategorytoProduct", b =>

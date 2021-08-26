@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Website.Data;
 using Website.Models;
 
 namespace Website.Controllers
@@ -12,17 +14,38 @@ namespace Website.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly WebsiteDatabaseContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,
+                              WebsiteDatabaseContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var model = _context.Products.ToList();
+            return View(model);
         }
 
+        public IActionResult ShowProduct(int id)
+        {
+            var product = _context.Products.Include(c => c.Item).SingleOrDefault(c => c.ID == id);
+
+            if (product == null)
+                return NotFound();
+
+            var categories = _context.Products.Where(c => c.ID == id).SelectMany(c => c.CategoriytoProducts).Select(c => c.Category).ToList();
+
+            ProductCategoriesViewModel model = new ProductCategoriesViewModel()
+            {
+                Product = product,
+                Categories = categories
+            };
+
+            return View(model);
+        }
         public IActionResult Mahdi()
         {
             return View();
