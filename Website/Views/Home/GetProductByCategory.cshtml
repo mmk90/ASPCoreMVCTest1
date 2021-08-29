@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "GetProductByCategory";
+}
+
+<h1>@ViewData["CategoryName"]</h1>
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <partial name="_Product" model="product" />
+    }
+</div>

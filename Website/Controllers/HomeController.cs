@@ -89,6 +89,15 @@ namespace Website.Controllers
             return View();
         }
 
+        [Route("/Category/{categoryID}/{categoryName}")]
+        public IActionResult GetProductByCategory(int categoryID,string categoryName)
+        {
+            ViewData["CategoryName"] = categoryName;
+            var model = _context.CategorytoProducts.Where(c => c.CategoryID == categoryID).Include(c => c.Product).Select(c => c.Product).ToList();
+            return View(model);
+        }
+        
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

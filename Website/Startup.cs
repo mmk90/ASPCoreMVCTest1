@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Website.Data;
+using Website.Data.Repositories;
 
 namespace Website
 {
@@ -27,7 +28,10 @@ namespace Website
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<WebsiteDatabaseContext>(options => { options.UseSqlServer("Data Source=192.168.168.253;Initial Catalog=MahdiDB;User Id=sa; Password=Toptec@2018@97;"); });
+            //services.AddDbContext<WebsiteDatabaseContext>(options => { options.UseSqlServer("Data Source=192.168.168.253;Initial Catalog=MahdiDB;User Id=sa; Password=Toptec@2018@97;"); });
+            services.AddDbContext<WebsiteDatabaseContext>(options => { options.UseSqlServer("Data Source=.;Initial Catalog=MahdiDB;User Id=sa;integrated security=sspi;"); });
+
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -25,15 +25,21 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <partial name="/Views/Categories/_Categories.cshtml" />
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        <div class="row">
+            <div class="col-9">
+                @RenderBody()
+            </div>
+            <div class="col-3">
+                @await Component.InvokeAsync("CategoriesComponent")
+            </div>
+        </div>
     </div>
 
     <footer class="border-top footer text-muted">
