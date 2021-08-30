@@ -32,6 +32,7 @@ namespace Website
             services.AddDbContext<WebsiteDatabaseContext>(options => { options.UseSqlServer("Data Source=.;Initial Catalog=MahdiDB;User Id=sa;integrated security=sspi;"); });
 
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

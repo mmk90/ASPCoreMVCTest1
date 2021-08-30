@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Website.Models
 {
-    public class AccountViewModel
+    public class RegisterViewModel
     {
 
         [MaxLength(300)]
