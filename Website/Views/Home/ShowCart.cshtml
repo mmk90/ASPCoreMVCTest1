@@ -1,4 +1,4 @@
-﻿@model CartViewModel
+﻿@model Order
 @{
     ViewData["Title"] = "سبد خرید";
 }
@@ -14,18 +14,18 @@
     </thead>
 
     <tbody>
-        @foreach (var item in Model.CartItems)
+        @foreach (var item in Model.OrderDetails)
         {
             <tr>
-                <td>@item.Item.Product.Name</td>
-                <td>@item.Qty</td>
-                <td>@item.getTotalPrice</td>
+                <td>@item.Product.Name</td>
+                <td>@item.Count</td>
+                <td>@(item.Price * item.Count)</td>
                 <td>
-                    <a asp-action="RemoveCart" asp-route-itemId="@item.Item.ID">حذف</a>
+                    <a asp-action="RemoveCart" asp-route-detailId="@item.DetailId">حذف</a>
                 </td>
             </tr>
         }
     </tbody>
 
 </table>
-<h5>جمع کل : @Model.OrderTotal</h5>
+<h5>جمع کل : @Model.OrderDetails.Sum(s => s.Count * s.Price)</h5>

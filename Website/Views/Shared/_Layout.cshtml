@@ -26,6 +26,24 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <partial name="/Views/Categories/_Categories.cshtml" />
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item pull-right">
+                                <a class="nav-link text-dark">@User.Identity.Name خوش آمدید !</a>
+                            </li>
+                            <li class="nav-item pull-right">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">خروج</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item pull-right">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">ثبت نام</a>
+                            </li>
+                            <li class="nav-item pull-right">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">ورود</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
