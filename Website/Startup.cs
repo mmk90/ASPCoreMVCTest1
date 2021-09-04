@@ -31,8 +31,8 @@ namespace Website
             services.AddRazorPages();
             services.AddControllersWithViews();
 
-            services.AddDbContext<WebsiteDatabaseContext>(options => { options.UseSqlServer("Data Source=192.168.168.253;Initial Catalog=MahdiDB;User Id=sa; Password=Toptec@2018@97;"); });
-            //services.AddDbContext<WebsiteDatabaseContext>(options => { options.UseSqlServer("Data Source=.;Initial Catalog=MahdiDB;User Id=sa;integrated security=sspi;"); });
+            //services.AddDbContext<WebsiteDatabaseContext>(options => { options.UseSqlServer("Data Source=192.168.168.253;Initial Catalog=MahdiDB;User Id=sa; Password=Toptec@2018@97;"); });
+            services.AddDbContext<WebsiteDatabaseContext>(options => { options.UseSqlServer("Data Source=.;Initial Catalog=MahdiDB;integrated security=sspi;"); });
 
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IUserRepository, UserRepository>();

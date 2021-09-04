@@ -27,7 +27,7 @@ namespace Website.Controllers
         {
             if (_userRepository.IsExistUserByEmail(email.ToLower()))
                 return Json($"این {email} وجود دارد");
-            return Json(false);
+            return Json(true);
         }
 
         [HttpPost]
