@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,6 +12,7 @@ namespace Website.Models
     {
 
         [MaxLength(300)]
+        [Remote("VerifyEmail", "Account")]
         [EmailAddress]
         [Display(Name = "ایمیل")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید ")]

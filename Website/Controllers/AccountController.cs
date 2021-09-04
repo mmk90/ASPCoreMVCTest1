@@ -23,6 +23,12 @@ namespace Website.Controllers
         {
             return View();
         }
+        public IActionResult VerifyEmail(string email)
+        {
+            if (_userRepository.IsExistUserByEmail(email.ToLower()))
+                return Json($"این {email} وجود دارد");
+            return Json(false);
+        }
 
         [HttpPost]
         public IActionResult Register(RegisterViewModel register)
@@ -32,11 +38,11 @@ namespace Website.Controllers
                 return View(register);
             }
 
-            if (_userRepository.IsExistUserByEmail(register.Email.ToLower()))
-            {
-                ModelState.AddModelError("Email", "ایمیل وارد شده قبلا ثبت نام کرده است");
-                return View(register);
-            }
+            //if (_userRepository.IsExistUserByEmail(register.Email.ToLower()))
+            //{
+            //    ModelState.AddModelError("Email", "ایمیل وارد شده قبلا ثبت نام کرده است");
+            //    return View(register);
+            //}
 
             User user = new User()
             {
