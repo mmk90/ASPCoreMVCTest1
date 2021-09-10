@@ -21,9 +21,15 @@ namespace Website.Pages.Admin
 
         [BindProperty]
         public AddEditProductViewModel Product { get; set; }
+
+        [BindProperty]
+        public List<int> selectedGroups { get; set; }
         public void OnGet()
         {
-
+            Product = new AddEditProductViewModel()
+            {
+                Categories = _context.Categories.ToList()
+            };
         }
 
 
@@ -39,7 +45,7 @@ namespace Website.Pages.Admin
                 Price = Product.Price,
                 Qty = Product.QuantityInStock
             };
-
+            
 
             var pro = new Product()
             {
@@ -51,6 +57,19 @@ namespace Website.Pages.Admin
             _context.Add(pro);
             _context.SaveChanges();
 
+            if(selectedGroups?.Count>0)
+            {
+                foreach (var g in selectedGroups)
+                {
+                    var cp = new CategorytoProduct()
+                    {
+                        ProductID = pro.ID,
+                        CategoryID = g
+                    };
+                    _context.CategorytoProducts.Add(cp);
+                    _context.SaveChanges();
+                }
+            }
 
             if (Product.Picture?.Length > 0)
             {
